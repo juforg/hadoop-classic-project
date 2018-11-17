@@ -1,0 +1,8 @@
+cat hadoop 2
+cat mr 1
+hadoop hello 3
+hadoop mr 1
+hive tom 3
+mr world 2
+mr tom 1
+tom world 2

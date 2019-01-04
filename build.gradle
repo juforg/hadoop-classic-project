@@ -1,11 +1,14 @@
 plugins {
     id 'java'
+    id 'scala'
 }
 
 group 'vip.appcity'
 version '1.0'
 
+
 sourceCompatibility = 1.8
+targetCompatibility = 1.8
 
 repositories {
     mavenLocal()//本地库支持
@@ -15,7 +18,44 @@ repositories {
 
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
-    compile group: 'org.apache.hadoop', name: 'hadoop-common', version: '2.7.2'
-    compile group: 'org.apache.hadoop', name: 'hadoop-hdfs', version: '2.7.2'
-    compile group: 'org.apache.hadoop', name: 'hadoop-mapreduce-client-jobclient', version: '2.7.2'
+
+    // hdfs基础依赖
+    compile ('org.apache.hadoop:hadoop-common:2.6.5')
+    compile ('org.apache.hadoop:hadoop-hdfs:2.6.5')
+
+    compile group: 'org.apache.hadoop', name: 'hadoop-mapreduce-client-jobclient', version: '2.6.5'
+    compile group: 'org.apache.hadoop', name: 'hadoop-client', version: '2.6.5'
+
+    // 操作hbase所需依赖
+    compile ('org.apache.hbase:hbase-client:0.98.24-hadoop2')
+
+    compileOnly group: 'javax.servlet', name: 'javax.servlet-api', version: '3.1.0'
+    // elasticsearch
+    compile 'org.elasticsearch.client:elasticsearch-rest-high-level-client:6.2.3'
+
+    // scala spark 依赖
+    compile group: 'org.scala-lang', name: 'scala-library', version: '2.10.7'
+
+    // spark
+    compile ('org.apache.spark:spark-core_2.10:1.6.0')
+    // spark stream
+    compile group: 'org.apache.spark', name: 'spark-streaming_2.10', version: '1.6.0'
+    // spark kafka
+    compile group: 'org.apache.spark', name: 'spark-streaming-kafka_2.10', version: '1.6.0'
+    // spark sql
+//    compile group: 'org.apache.spark', name: 'spark-sql_2.10', version: '1.6.0'
+
+    // spark hive
+//    provided group: 'org.apache.spark', name: 'spark-hive_2.10', version: '1.6.0'
+    // spark mllib
+//    runtime group: 'org.apache.spark', name: 'spark-mllib_2.10', version: '1.6.0'
+
+    //storm
+    provided group: 'org.apache.storm', name: 'storm-core', version: '0.9.6'
+
+    compile group: 'com.alibaba', name: 'fastjson', version: '1.2.11'
+
+}
+configurations {
+    all*.exclude group: 'javax.servlet'   //避免hadoop和 hbase里这个包冲突
 }

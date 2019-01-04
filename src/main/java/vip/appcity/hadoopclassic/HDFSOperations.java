@@ -43,12 +43,12 @@ public class HDFSOperations {
         // 提交jar包到服务器时 需把这里fs.defaultFS注释掉 本地运行则放开
 //        config.set("fs.defaultFS","hdfs://sj-node1:8020");
 //        fileSystem = FileSystem.get(config);
-        pathhdfsStr= "/testoperation/testha";
+        pathhdfsStr= "/wc/input";
         resourcePath=System.getProperty("user.dir")+"/src/main/resources";
         // 2.新建文件夹
-        mkdir(pathhdfsStr);
+//        mkdir(pathhdfsStr);
         // 3. 上传文件 该文件存在resources目录下
-        uploadfiles("qq.txt");
+        uploadfiles("wc.txt");
         // 4. 列出指定目录下所有文件
         listFiles(pathhdfsStr);
 

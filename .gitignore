@@ -70,3 +70,4 @@ Temporary Items
 /.idea/vcs.xml
 /out/
 /.idea/
+/data/checkpoint/*

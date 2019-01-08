@@ -1,6 +1,7 @@
 plugins {
     id 'java'
     id 'scala'
+    id 'idea'
 }
 
 group 'vip.appcity'
@@ -43,15 +44,17 @@ dependencies {
     // spark kafka
     compile group: 'org.apache.spark', name: 'spark-streaming-kafka_2.10', version: '1.6.0'
     // spark sql
-//    compile group: 'org.apache.spark', name: 'spark-sql_2.10', version: '1.6.0'
+    compile group: 'org.apache.spark', name: 'spark-sql_2.10', version: '1.6.0'
 
     // spark hive
 //    provided group: 'org.apache.spark', name: 'spark-hive_2.10', version: '1.6.0'
     // spark mllib
-//    runtime group: 'org.apache.spark', name: 'spark-mllib_2.10', version: '1.6.0'
+    compileOnly group: 'org.apache.spark', name: 'spark-mllib_2.10', version: '1.6.0'
 
     //storm
-    provided group: 'org.apache.storm', name: 'storm-core', version: '0.9.6'
+    compileOnly group: 'org.apache.storm', name: 'storm-core', version: '0.9.6'
+    //storm kafka 整合使用
+    compileOnly group: 'org.apache.storm', name: 'storm-kafka', version: '0.9.6'
 
     compile group: 'com.alibaba', name: 'fastjson', version: '1.2.11'
 
